@@ -1,0 +1,45 @@
+# Gradle files
+.gradle
+/build/
+!gradle-wrapper.jar
+.gradle/
+.gradle-cache/
+
+# Local configuration files
+/local.properties
+/.idea/
+
+# IntelliJ IDEA project files
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+
+# Android Studio captures
+/captures/
+
+# macOS files
+.DS_Store
+
+# NDK and CMake
+.externalNativeBuild/
+.cxx/
+
+# Generated files
+*.iml
+*.apk
+*.ap_
+*.dex
+*.class
+*.jar
+*.war
+*.ear
+
+# Logs
+*.log
+
+# Keystore files (if any)
+*.keystore
+*.jks
