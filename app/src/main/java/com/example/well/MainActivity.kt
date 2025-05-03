@@ -1,11 +1,11 @@
-package com.example.well
+package com.ocode.well
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.well.databinding.ActivityMainBinding
-import com.example.well.viewmodel.QuoteViewModel
+import com.ocode.well.databinding.ActivityMainBinding
+import com.ocode.well.viewmodel.QuoteViewModel
 
 class MainActivity : AppCompatActivity() {
 

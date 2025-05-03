@@ -1,8 +1,8 @@
-package com.example.well.viewmodel
+package com.ocode.well.viewmodel
 
 import androidx.lifecycle.*
-import com.example.well.data.QuoteRepository
-import com.example.well.model.Quote
+import com.ocode.well.data.QuoteRepository
+import com.ocode.well.model.Quote
 import kotlinx.coroutines.launch
 
 class QuoteViewModel : ViewModel() {

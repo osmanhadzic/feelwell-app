@@ -1,4 +1,4 @@
-package com.example.well.utils
+package com.ocode.well.utils
 
 sealed class Resource<T>(
     val data: T? = null,

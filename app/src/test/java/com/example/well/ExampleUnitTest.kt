@@ -1,4 +1,4 @@
-package com.example.well
+package com.ocode.well
 
 import org.junit.Test
 

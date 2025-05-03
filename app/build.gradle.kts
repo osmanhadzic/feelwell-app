@@ -3,18 +3,34 @@ plugins {
     id("org.jetbrains.kotlin.android") version "1.9.0"
 }
 
+import java.util.Properties
+
+// Load keystore properties from local.properties
+val keystoreProperties = Properties().apply {
+    load(File(rootDir, "local.properties").inputStream())
+}
+
 android {
-    namespace = "com.example.well"
+    namespace = "com.ocode.well"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.well"
+        applicationId = "com.ocode.well"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file(keystoreProperties["KEYSTORE_FILE"] as String)
+            storePassword = keystoreProperties["KEYSTORE_PASSWORD"] as String
+            keyAlias = keystoreProperties["KEY_ALIAS"] as String
+            keyPassword = keystoreProperties["KEY_PASSWORD"] as String
+        }
     }
 
     buildTypes {
@@ -24,6 +40,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 

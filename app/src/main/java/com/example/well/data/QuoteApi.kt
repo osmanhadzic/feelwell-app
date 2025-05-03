@@ -1,6 +1,6 @@
-package com.example.well.data
+package com.ocode.well.data
 
-import com.example.well.model.Quote
+import com.ocode.well.model.Quote
 import retrofit2.Call
 import retrofit2.http.GET
 
