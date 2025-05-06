@@ -20,4 +20,8 @@ class QuoteViewModel : ViewModel() {
             _quote.value = repository.getRandomQuote()
         }
     }
+
+    fun refreshQuote() {
+        fetchQuote()
+    }
 }

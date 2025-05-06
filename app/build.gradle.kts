@@ -1,13 +1,24 @@
+import java.util.Properties
+import java.io.File
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android") version "1.9.0"
+    id("com.diffplug.spotless") version "6.21.0"
 }
 
-import java.util.Properties
-
 // Load keystore properties from local.properties
-val keystoreProperties = Properties().apply {
-    load(File(rootDir, "local.properties").inputStream())
+val keystorePropertiesFile = File(project.rootDir, "local.properties")
+val keystoreProperties = Properties()
+
+if (keystorePropertiesFile.exists()) {
+    try {
+        keystoreProperties.load(keystorePropertiesFile.inputStream())
+    } catch (e: Exception) {
+        throw GradleException("Failed to load keystore properties", e)
+    }
+} else {
+    logger.warn("local.properties file not found. Skipping keystore setup.")
 }
 
 android {
@@ -26,10 +37,22 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file(keystoreProperties["KEYSTORE_FILE"] as String)
-            storePassword = keystoreProperties["KEYSTORE_PASSWORD"] as String
-            keyAlias = keystoreProperties["KEY_ALIAS"] as String
-            keyPassword = keystoreProperties["KEY_PASSWORD"] as String
+            val storeFilePath = keystoreProperties.getProperty("KEYSTORE_FILE")
+            val storePassword = keystoreProperties.getProperty("KEYSTORE_PASSWORD")
+            val keyAlias = keystoreProperties.getProperty("KEY_ALIAS")
+            val keyPassword = keystoreProperties.getProperty("KEY_PASSWORD")
+
+            if (
+                storeFilePath != null && storePassword != null &&
+                keyAlias != null && keyPassword != null
+            ) {
+                storeFile = file(storeFilePath)
+                this.storePassword = storePassword
+                this.keyAlias = keyAlias
+                this.keyPassword = keyPassword
+            } else {
+                throw GradleException("Missing keystore properties in local.properties.")
+            }
         }
     }
 
@@ -77,9 +100,26 @@ dependencies {
 
     // Activity KTX
     implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation("androidx.annotation:annotation:1.7.1")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+}
+
+spotless {
+    kotlin {
+        target("**/*.kt")
+        ktlint("0.50.0").userData(
+            mapOf(
+                "indent_size" to "4",
+                "continuation_indent_size" to "4"
+            )
+        )
+    }
+    kotlinGradle {
+        target("**/*.kts")
+        ktlint("0.50.0")
+    }
 }

@@ -5,6 +5,7 @@
     android:background="@drawable/backgrund">
     
     <FrameLayout
+        android:id="@+id/flLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -13,19 +14,26 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:alpha="0.5" />
+            android:alpha="0.5"
+            android:background="@color/white" />
 
-        <TextView
-            android:id="@+id/tvPhrase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/loading"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="italic" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvPhrase"
+                android:layout_width="368dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/loading"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
     </FrameLayout>
 
     <TextView
