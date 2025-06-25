@@ -76,6 +76,7 @@ android {
     }
 
     buildFeatures {
+        dataBinding = true
         viewBinding = true
         compose = true
     }
@@ -125,6 +126,14 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.5.3")
+
+    // Add AndroidX dependencies
+    implementation("androidx.fragment:fragment-ktx:1.5.7")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+
+    // Add View Binding support
+    implementation("androidx.databinding:viewbinding:7.4.2")
 }
 
 spotless {

@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainActivity">
+    app:startDestination="@id/navigationFragment">
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.ocode.well.MainActivity"
-        android:label="MainActivity" />
+
+    <fragment
+        android:id="@+id/motivationFragment2"
+        android:name="com.ocode.well.fragments.MotivationFragment"
+        android:label="MotivationFragment" >
+        <action
+            android:id="@+id/action_motivationFragment2_to_navigationFragment"
+            app:destination="@id/navigationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigationFragment"
+        android:name="com.ocode.well.fragments.NavigationFragment"
+        android:label="fragment_navigation"
+        tools:layout="@layout/fragment_navigation" >
+        <action
+            android:id="@+id/action_navigationFragment_to_motivationFragment"
+            app:destination="@id/motivationFragment2" />
+        <action
+            android:id="@+id/action_navigationFragment_to_haikuFragment"
+            app:destination="@id/haikuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/haikuFragment"
+        android:name="com.ocode.well.fragments.HaikuFragment"
+        android:label="fragment_haiku"
+        tools:layout="@layout/fragment_haiku" >
+        <action
+            android:id="@+id/action_haikuFragment_to_navigationFragment"
+            app:destination="@id/navigationFragment" />
+    </fragment>
 </navigation>
