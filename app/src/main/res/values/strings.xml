@@ -3,4 +3,7 @@
     <string name="tag">Your Text Here</string>
     <string name="loading">Loading...</string>
     <string name="author">author</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back"><![CDATA[<= Back]]></string>
 </resources>

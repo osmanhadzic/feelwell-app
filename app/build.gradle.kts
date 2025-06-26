@@ -3,11 +3,10 @@ import java.io.File
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android") version "1.9.0"
+    id("org.jetbrains.kotlin.android")
     id("com.diffplug.spotless") version "6.21.0"
 }
 
-// Load keystore properties from local.properties
 val keystorePropertiesFile = File(project.rootDir, "local.properties")
 val keystoreProperties = Properties()
 
@@ -77,7 +76,13 @@ android {
     }
 
     buildFeatures {
+        dataBinding = true
         viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
 }
 
@@ -101,11 +106,34 @@ dependencies {
     // Activity KTX
     implementation("androidx.activity:activity-ktx:1.8.2")
     implementation("androidx.annotation:annotation:1.7.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+    // Jetpack Compose
+    implementation("androidx.compose.ui:ui:1.5.3")
+    implementation("androidx.compose.material:material:1.5.3")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.5.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+    implementation("androidx.activity:activity-compose:1.8.2")
+
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.8")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.8")
+
+    debugImplementation("androidx.compose.ui:ui-tooling:1.5.3")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.5.3")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.5.3")
+
+    // Add AndroidX dependencies
+    implementation("androidx.fragment:fragment-ktx:1.5.7")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+
+    // Add View Binding support
+    implementation("androidx.databinding:viewbinding:7.4.2")
 }
 
 spotless {
